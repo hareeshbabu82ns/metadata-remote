@@ -107,6 +107,18 @@ window.MetadataRemote.State = {
   inferenceActive: {},
   inferenceAbortControllers: {},
 
+  // Clipboard state for copy/paste functionality
+  clipboard: {
+    sourceFile: null, // Full path of source file
+    sourceFilename: null, // Display name of source file
+    fields: {}, // { fieldName: value }
+    albumArt: null, // Base64 album art data
+    timestamp: null, // When the copy was made
+  },
+
+  // Folder field suggestions
+  folderFieldSuggestions: {}, // { folderPath: { fieldName: { count, sampleValues, formats } } }
+
   // History state
   historyActions: [],
   selectedHistoryAction: null,

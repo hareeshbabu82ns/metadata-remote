@@ -137,6 +137,25 @@
                     
                     <div id="metadata-content-wrapper">
                     
+                    <!-- Clipboard controls -->
+                    <div class="clipboard-controls">
+                        <button type="button" class="clipboard-btn copy-metadata-btn" onclick="window.MetadataRemote.Metadata.Clipboard.copyFromCurrentFile()" title="Copy all metadata from this file (Ctrl+C)">
+                            <span class="btn-icon">📋</span>
+                            <span class="btn-text">Copy</span>
+                        </button>
+                        <button type="button" class="clipboard-btn paste-metadata-btn" onclick="window.MetadataRemote.Metadata.Clipboard.openPasteModal()" title="Paste metadata (Ctrl+V)" disabled>
+                            <span class="btn-icon">📥</span>
+                            <span class="btn-text">Paste</span>
+                        </button>
+                        <div class="clipboard-indicator" id="clipboard-indicator" style="display: none;">
+                            <span class="clipboard-icon">📎</span>
+                            <span class="clipboard-count">0</span>
+                            <span class="clipboard-label">from</span>
+                            <span class="clipboard-source" title="Source file"></span>
+                            <button type="button" class="clipboard-clear" onclick="window.MetadataRemote.Metadata.Clipboard.clearClipboard()" title="Clear clipboard">✕</button>
+                        </div>
+                    </div>
+                    
                     <div class="album-art-section">
                         <div class="album-art-container">
                             <div id="art-display">
@@ -186,6 +205,29 @@
                     <!-- Container for extended fields -->
                     <div id="extended-fields-wrapper" style="display: none;">
                         <div id="dynamic-fields-container"></div>
+                    </div>
+                    
+                    <!-- Filename suggestions section -->
+                    <div id="filename-suggestions-section" style="display: none;">
+                        <div class="filename-suggestions-header">Suggestions from filename:</div>
+                        <div id="filename-suggestions-container" class="filename-suggestions-list"></div>
+                    </div>
+                    
+                    <!-- Common fields quick-add section -->
+                    <div id="common-fields-section" style="display: none;">
+                        <div class="common-fields-header">Quick add fields:</div>
+                        <div id="common-fields-container" class="common-fields-badges"></div>
+                    </div>
+                    
+                    <!-- Folder fields suggestions toggle -->
+                    <div class="folder-fields-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="folder-fields-wrapper" style="display: none;">
+                        <span class="expand-icon">▶</span>
+                        <span>Fields from other files in folder</span>
+                    </div>
+                    
+                    <!-- Container for folder field suggestions -->
+                    <div id="folder-fields-wrapper" style="display: none;">
+                        <div id="folder-fields-container"></div>
                     </div>
                     
                     <!-- Add new metadata field section -->
@@ -382,12 +424,12 @@
                             <span class="help-keys"><span class="help-key">Shift</span>+<span class="help-key">Delete</span></span>
                         </div>
                         <div class="help-shortcut-item">
-                            <span class="help-description">Save to file</span>
-                            <span class="help-keys">Navigate to <span class="help-key">File</span></span>
+                            <span class="help-description">Copy metadata</span>
+                            <span class="help-keys"><span class="help-key">Ctrl</span><span class="help-key-plus">+</span><span class="help-key">C</span></span>
                         </div>
                         <div class="help-shortcut-item">
-                            <span class="help-description">Save to folder</span>
-                            <span class="help-keys">Navigate to <span class="help-key">Folder</span></span>
+                            <span class="help-description">Paste metadata</span>
+                            <span class="help-keys"><span class="help-key">Ctrl</span><span class="help-key-plus">+</span><span class="help-key">V</span></span>
                         </div>
                     </div>
                 </div>
@@ -476,6 +518,37 @@
             </button>
         </div>
     </div>
+
+    <!-- Paste Modal -->
+    <div class="paste-modal-overlay" id="paste-modal-overlay" role="presentation"></div>
+    <div class="paste-modal" id="paste-modal" role="dialog" aria-modal="true" aria-labelledby="paste-modal-header">
+        <div class="paste-modal-header" id="paste-modal-header">
+            <h3>Paste Metadata</h3>
+            <span class="paste-source-info" id="paste-source-info"></span>
+        </div>
+        
+        <div class="paste-modal-content">
+            <div class="paste-select-controls">
+                <button type="button" class="paste-select-btn" onclick="window.MetadataRemote.Metadata.Clipboard.toggleAllPasteFields(true)">Select All</button>
+                <button type="button" class="paste-select-btn" onclick="window.MetadataRemote.Metadata.Clipboard.toggleAllPasteFields(false)">Deselect All</button>
+            </div>
+            <div class="paste-fields-list" id="paste-fields-list">
+                <!-- Field checkboxes will be dynamically inserted here -->
+            </div>
+        </div>
+        
+        <div class="paste-modal-actions">
+            <button type="button" class="paste-action-btn paste-to-file" id="paste-to-file-btn" onclick="window.MetadataRemote.Metadata.Clipboard.pasteToFile()">
+                Paste to File
+            </button>
+            <button type="button" class="paste-action-btn paste-to-folder" id="paste-to-folder-btn" onclick="window.MetadataRemote.Metadata.Clipboard.pasteToFolder()">
+                Paste to Folder
+            </button>
+            <button type="button" class="paste-action-btn paste-cancel" onclick="window.MetadataRemote.Metadata.Clipboard.closePasteModal()">
+                Cancel
+            </button>
+        </div>
+    </div>
   
     <!-- Core modules -->
     <script src="{{ url_for('static', filename='js/state.js') }}"></script>
@@ -517,6 +590,8 @@
     <script src="{{ url_for('static', filename='js/metadata/inference.js') }}"></script>
     <script src="{{ url_for('static', filename='js/metadata/transition-controller.js') }}"></script>
     <script src="{{ url_for('static', filename='js/metadata/field-edit-modal.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/metadata/clipboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/metadata/folder-fields.js') }}"></script>
 
     <!-- History modules -->
     <script src="{{ url_for('static', filename='js/history/manager.js') }}"></script>
