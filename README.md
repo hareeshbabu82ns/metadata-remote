@@ -14,7 +14,7 @@ Need to edit audio metadata on a headless server? Until now you had to either us
 
 ```bash
 # Download docker-compose.yml
-wget https://raw.githubusercontent.com/wow-signal-dev/metadata-remote/main/docker-compose.yml
+wget https://raw.githubusercontent.com/hareeshbabu82ns/metadata-remote/main/docker-compose.yml
 
 # Edit your music directory path
 nano docker-compose.yml  # Change /path/to/your/music:/music
@@ -33,18 +33,21 @@ Multi-architecture Docker images available for x86_64, ARM64, and ARMv7.
 ## Key Features
 
 ### Complete Metadata Control
+
 - **Full field access** - View and edit ALL text metadata fields, organized into Standard and Extended categories
 - **Field management** - Create new custom fields or delete existing ones, with full undo/redo support
 - **Bulk operations** - Apply any changes to individual files or entire folders with one click
 - **Long-form editor** - Automatically-appearing dedicated editor for lyrics and metadata content over 100 characters
 
 ### Intelligent Metadata Suggestions
+
 - **Smart inference** - Analyzes filenames, folder patterns, and sibling files to suggest metadata
 - **MusicBrainz integration** - Combines local context with online database queries
 - **Confidence scoring** - Presents suggestions ranked by confidence percentage
 - **Edge case handling** - Specialized strategies for classical music, compilations, and live recordings
 
 ### Powerful File Management
+
 - **In-browser playback** - Stream files directly in the UI
 - **Direct editing** - Rename files and folders without leaving the interface
 - **Format support** - MP3, FLAC, OGG, OPUS, M4A, M4B, WMA, WAV, and WavPack
@@ -52,37 +55,41 @@ Multi-architecture Docker images available for x86_64, ARM64, and ARMv7.
 - **Editing history** - Full undo/redo for up to 1000 operations, including bulk changes
 
 ### Keyboard-First Design
+
 - **Complete keyboard control** - Every feature accessible without a mouse
 - **Efficient navigation** - Arrow keys, Tab switching, Enter to play/edit, Escape to save
 - **Smart shortcuts** - Double-tap Enter to rename folders, single Enter to edit fields
 
 ### Modern, Lightweight Architecture
+
 - **Compact** - Just 81.6 MB container size using optimized Mutagen library
 - **Production-ready** - Gunicorn server with reverse proxy support
 - **Theme switching** - Toggle between light and dark modes
 - **Multi-platform** - Native support for x86_64, ARM64, and ARMv7
 
 ### Additional Capabilities
+
 Real-time search filtering • Resizable workspace panels • History tracking through renames • Extended metadata viewer • Automatic image repair • No external dependencies • Clean visual feedback • Responsive design
 
 ## Comparison with Other Tools
 
-| | Metadata Remote | Mp3tag | MusicBrainz Picard | Beets |
-|---------|----------------|--------|-------------------|-------|
-| **Works on headless servers** | ✅ Yes | ❌ No | ❌ No | ✅ Yes |
-| **Setup time** | ✅ < 1 minute | — | — | ❌ 30+ minutes |
-| **Edit without importing** | ✅ Direct file editing | — | — | ❌ Must import to library |
-| **Visual interface** | ✅ Full web UI | — | — | ⚠️ Terminal or basic web |
-| **Bulk operations** | ✅ Click and edit | — | — | ⚠️ Command-line only |
-| **Undo/safety** | ✅ Full history | — | — | ❌ No undo |
-| **Learning curve** | ✅ None | — | — | ❌ Steep |
-| **Smart suggestions** | ✅ Multi-source inference | — | — | ⚠️ MusicBrainz only |
+|                               | Metadata Remote           | Mp3tag | MusicBrainz Picard | Beets                     |
+| ----------------------------- | ------------------------- | ------ | ------------------ | ------------------------- |
+| **Works on headless servers** | ✅ Yes                    | ❌ No  | ❌ No              | ✅ Yes                    |
+| **Setup time**                | ✅ < 1 minute             | —      | —                  | ❌ 30+ minutes            |
+| **Edit without importing**    | ✅ Direct file editing    | —      | —                  | ❌ Must import to library |
+| **Visual interface**          | ✅ Full web UI            | —      | —                  | ⚠️ Terminal or basic web  |
+| **Bulk operations**           | ✅ Click and edit         | —      | —                  | ⚠️ Command-line only      |
+| **Undo/safety**               | ✅ Full history           | —      | —                  | ❌ No undo                |
+| **Learning curve**            | ✅ None                   | —      | —                  | ❌ Steep                  |
+| **Smart suggestions**         | ✅ Multi-source inference | —      | —                  | ⚠️ MusicBrainz only       |
 
 ## Usage Guide
 
 ### Navigation
 
 **Essential Controls**
+
 - **↑↓** Navigate files/folders
 - **PgUp/PgDn** Jump by pages
 - **Tab** Switch between panes
@@ -94,6 +101,7 @@ Real-time search filtering • Resizable workspace panels • History tracking t
 - **?** Show help
 
 **Editing Workflow**
+
 1. Navigate to any metadata field and press Enter to edit
 2. Make your changes, then Enter to save or Esc to cancel
 3. Navigate to "File" or "Folder" buttons to save changes to one file or all files in the folder
@@ -101,13 +109,16 @@ Real-time search filtering • Resizable workspace panels • History tracking t
 All functionality is keyboard accessible - mouse optional. See the in-app help guide (?) for complete keyboard shortcuts.
 
 ### Smart Metadata Inference
+
 When you click on an empty metadata field, Metadata Remote will:
+
 1. Analyze the filename, folder structure, and nearby files
 2. Query MusicBrainz if needed for additional data
 3. Present suggestions with synthesized confidence scores
 4. Just click any suggestion to apply it instantly
 
 ### Editing History
+
 - **Bottom panel**: Click to expand the editing history view
 - **Timeline view**: See all changes in chronological order
 - **Undo/Redo**: Revert or reapply any change in any order (up to 1000 changes)
@@ -116,6 +127,7 @@ When you click on an empty metadata field, Metadata Remote will:
 - **Clear history**: Remove all history when needed
 
 ### Bulk Operations
+
 - **Apply to File**: Save a single field to the current file
 - **Save all fields to file**: Save all metadata fields to a single file at once
 - **Apply to Folder**: Apply any field value to all files in the folder
@@ -123,6 +135,7 @@ When you click on an empty metadata field, Metadata Remote will:
 - **Smart workflow**: Navigate → Edit → Apply to folder
 
 ### Album Art Management
+
 - **Upload**: Click "Upload Image" to add new art
 - **Save Image**: Save only the album art without other metadata
 - **Apply to Folder**: Apply the same art to all files in the folder
@@ -134,10 +147,10 @@ When you click on an empty metadata field, Metadata Remote will:
 ### Docker Compose (Recommended)
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   metadata-remote:
-    image: ghcr.io/wow-signal-dev/metadata-remote:latest
+    image: ghcr.io/hareeshbabu82ns/metadata-remote:latest
     container_name: metadata-remote
     ports:
       - "8338:8338"
@@ -172,18 +185,20 @@ docker run -d \
   -v /your/music:/music \
   -e PUID=1000 \
   -e PGID=1000 \
-  ghcr.io/wow-signal-dev/metadata-remote:latest
+  ghcr.io/hareeshbabu82ns/metadata-remote:latest
 ```
 
 ## Use Cases
 
 ### Headless Media Servers
+
 - **Jellyfin/Plex preparation**: Organize metadata before library imports
 - **NAS systems**: TrueNAS, Unraid, Synology - edit without desktop apps
-- **VPS music libraries**: Cloud servers with no GUI access  
+- **VPS music libraries**: Cloud servers with no GUI access
 - **Raspberry Pi setups**: Lightweight enough for minimal hardware
 
 ### Large-Scale Operations
+
 - **Bulk metadata cleanup**: Process thousands of files efficiently
 - **Archive digitization**: Organize newly ripped collections
 - **Mixed format libraries**: Handle different formats intelligently
@@ -193,11 +208,11 @@ docker run -d \
 
 ### Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `PUID` | 1000 | User ID for file permissions |
-| `PGID` | 1000 | Group ID for file permissions |
-| `MUSIC_DIR` | /music | Internal container music path |
+| Variable    | Default | Description                   |
+| ----------- | ------- | ----------------------------- |
+| `PUID`      | 1000    | User ID for file permissions  |
+| `PGID`      | 1000    | Group ID for file permissions |
+| `MUSIC_DIR` | /music  | Internal container music path |
 
 ### Port Configuration
 
@@ -210,6 +225,7 @@ docker run -d \
 ## Architecture
 
 ### Backend
+
 - **Framework**: Python Flask
 - **Audio Processing**: For reading/writing metadata:
   - **Primary**: [Mutagen](https://mutagen.readthedocs.io/) library for direct metadata manipulation
@@ -218,12 +234,14 @@ docker run -d \
 - **History System**: In-memory with temporary file storage for album art
 
 ### Frontend
+
 - **Framework**: Vanilla JavaScript (no dependencies)
 - **UI Components**: Custom-built with modern CSS
 - **State Management**: Centralized state object pattern
 - **Performance**: Debounced operations, request cancellation
 
 ### Container
+
 - **Base**: Alpine Linux (ultra-lightweight)
 - **Size**: Only 81.6MB
 - **Architecture**: Multi-arch support (x86_64, ARM64, ARMv7)
@@ -232,13 +250,16 @@ docker run -d \
 ## Troubleshooting
 
 ### Permission Issues
+
 Ensure PUID/PGID match your user:
+
 ```bash
 id -u  # Your user ID
 id -g  # Your group ID
 ```
 
 ### Can't Access the Interface
+
 ```bash
 docker ps               # Check if container is running
 docker compose logs     # View logs for errors
@@ -246,16 +267,19 @@ docker-compose logs     # View logs for errors (for older Docker installations)
 ```
 
 ### Inference Not Working
+
 - Ensure you have internet connectivity for MusicBrainz queries
 - Check browser console for errors
 - Try refreshing the page
 
 ### History Not Saving
+
 - History is stored in memory and clears on container restart
 - This is by design for privacy and performance
 - Future versions may add persistent storage options
 
 ### Container Not Starting
+
 ```bash
 # Check container logs
 docker compose logs metadata-remote    # (or docker-compose logs for older installations)
@@ -265,6 +289,7 @@ docker inspect metadata-remote
 ```
 
 ### Network Access Issues
+
 ```bash
 # Verify container is running
 docker ps
@@ -282,8 +307,9 @@ netstat -tulpn | grep 8338
 Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ### Development Setup
+
 ```bash
-git clone https://github.com/wow-signal-dev/metadata-remote.git
+git clone https://github.com/hareeshbabu82ns/metadata-remote.git
 cd metadata-remote
 # See CONTRIBUTING.md for local development setup
 ```

@@ -73,7 +73,7 @@ MAX_HISTORY_ITEMS = 1000
 # Inference engine configuration
 INFERENCE_CACHE_DURATION = 3600  # 1 hour
 MUSICBRAINZ_RATE_LIMIT = 1.0  # 1 request per second
-MUSICBRAINZ_USER_AGENT = 'Metadata-Remote/1.0 (https://github.com/wow-signal-dev/metadata-remote)'
+MUSICBRAINZ_USER_AGENT = 'Metadata-Remote/1.0 (https://github.com/hareeshbabu82ns/metadata-remote)'
 
 # Field confidence thresholds for inference
 FIELD_THRESHOLDS = {

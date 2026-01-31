@@ -1,5 +1,5 @@
 # Alpine-based ultra-lightweight version
-FROM python:3.11-alpine as builder
+FROM python:3.11-alpine AS builder
 
 # Install build dependencies
 RUN apk add --no-cache gcc musl-dev linux-headers zlib-dev jpeg-dev
