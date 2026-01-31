@@ -122,6 +122,38 @@ docker-compose -f docker-compose.local.yml --env-file .env up --build --watch
    git commit -m "Add feature: bulk delete album art"
    ```
 
+   - To push to GitHub with tags and trigger your build:
+
+   ```bash
+   # Create and push a tag
+   git tag v1.0.0  # Use your version number
+   git push origin v1.0.0
+
+   # Or push all tags at once
+   git push origin --tags
+   ```
+
+   - Common workflow:
+
+   ```bash
+   # Make your commits
+   git add .
+   git commit -m "Your message"
+
+   # Create an annotated tag (recommended)
+   git tag -a v1.0.0 -m "Release version 1.0.0"
+
+   # Push both commits and the tag
+   git push origin main
+   git push origin v1.0.0
+   ```
+
+   - Common workflow:
+
+   ```bash
+   git push origin main --tags
+   ```
+
 5. **Push and create a pull request:**
    - Include a clear description of what the PR does
    - Reference any related issues
