@@ -55,6 +55,8 @@ Feature requests are welcome! Please:
 
    ```bash
    export MUSIC_DIR=/path/to/your/test/music
+   export PUID=$(id -u)
+   export PGID=$(id -g)
    ```
 
 4. **Run the application:**
@@ -68,7 +70,7 @@ Feature requests are welcome! Please:
 ### Docker Development
 
 ```bash
-docker-compose up --build
+docker-compose -f docker-compose.local.yml --env-file .env up --build --watch
 ```
 
 ## Code Guidelines

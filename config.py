@@ -94,6 +94,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Log startup configuration
+logger.info(f"Starting with MUSIC_DIR={MUSIC_DIR}")
 logger.info(f"Starting with PUID={OWNER_UID}, PGID={OWNER_GID}")
 logger.info(f"Supporting {len(AUDIO_EXTENSIONS)} audio formats: {', '.join(AUDIO_EXTENSIONS)}")
 logger.info(f"Show hidden files: {SHOW_HIDDEN_FILES}")

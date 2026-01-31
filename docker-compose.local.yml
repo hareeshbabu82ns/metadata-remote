@@ -1,16 +1,36 @@
-version: '3.8'
-
 services:
   metadata-remote:
     build: .
     container_name: metadata-remote-dev
+    develop:
+      watch:
+        - action: sync
+          path: ./templates
+          target: /src/templates
+        - action: sync
+          path: ./static
+          target: /src/static
+        - action: rebuild
+          path: ./core
+          target: /src/core
+        - action: rebuild
+          path: ./app.py
+          target: /src/app.py
+        - action: rebuild
+          path: ./config.py
+          target: /src/config.py
+        - action: rebuild
+          path: requirements.txt
+          target: /src/requirements.txt
     ports:
       - "8338:8338"
     volumes:
       - /PATH/TO/YOUR/MUSIC:/music  # Change this to your music directory
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
       # Uncomment the line below to show hidden files (files starting with .)
       # - SHOW_HIDDEN_FILES=true
     restart: unless-stopped
